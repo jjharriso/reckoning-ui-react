@@ -1,0 +1,24 @@
+.Room {
+  .blink {
+    animation: blinker 3s linear infinite;
+    animation-iteration-count: 15;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .poker-bits {
+    display: grid;
+    grid-template-columns: 25% auto 15%;
+    grid-template-rows: 150px auto;
+    grid-template-areas: 
+      'story-list vote-machine stats'
+      'story-list vote-machine players';
+    grid-row-gap: 2em;
+    grid-column-gap: 1em;
+  }
+
+}

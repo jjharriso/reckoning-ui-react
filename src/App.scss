@@ -1,0 +1,28 @@
+.App {
+
+  header {
+    background-color: #0071c5;
+    display: flex;
+    color: white;
+    
+    img {
+      height: 3em;
+      margin: 1em;
+    }
+
+    a {
+      color: #FFFFFF;
+      margin: 1em;
+      font-size: 1.5em;
+      text-decoration: none;
+    }
+  }
+
+  .container {
+    width: 90vw;
+    margin: 0 auto;
+  }
+
+}
+
+
