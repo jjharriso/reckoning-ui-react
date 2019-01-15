@@ -89,7 +89,7 @@ class Room extends Component {
   }
 
   async updateStory(deets) {
-    const Description = deets.target.innerHTML;
+    // const Description = deets.target.innerHTML;
     // update rally story
   }
 
