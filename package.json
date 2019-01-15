@@ -20,13 +20,14 @@
   },
   "devDependencies": {
     "node-sass": "^4.11.0",
-    "react-addons-test-utils": "^15.6.2",
-    "react-test-render": "^1.1.1"
+    "react-addons-test-utils": "15.2",
+    "react-test-render": "^1.1.1",
+    "@types/jest": "^23.3.9"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build": "react-scripts build && cp ./src/Staticfile ./build",
+    "test": "jest test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

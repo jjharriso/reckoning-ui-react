@@ -1,0 +1,209 @@
+# TODO: add info/details
+#
+stages:
+  - install
+  - build
+  - review
+  - deploy
+#   - e2e
+
+## user todo: update to match your app
+variables:
+  app_name: reckoning
+  app_component: ui
+  CF_API_ENDPOINT: https://api.apps1-fm-int.icloud.intel.com
+  CF_ORG: i_o
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+  # DOCKER_DRIVER: overlay2
+
+# required for GitLab Runner container
+before_script:
+  - export http_proxy=http://proxy-chain.intel.com:911
+  - export https_proxy=http://proxy-chain.intel.com:912
+  - export ftp_proxy=http://proxy-chain.intel.com:911
+  - export socks_proxy=http://proxy-us.intel.com:1080
+  - export no_proxy=intel.com,.intel.com,localhost,127.0.0.1
+  - export NODE_ENV=local
+# cache node_modules for speed
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .npm
+    - cache/Cypress
+    - node_modules
+  policy: pull
+
+# install dependencies
+install_deps:
+  image: node:8
+  stage: install
+  script:
+    - npm ci
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - .npm
+      - node_modules
+      - cache/Cypress
+    policy: push
+
+## build the app
+build_ui:
+  tags:
+    - linux
+    - docker
+  image: node:8
+  stage: build
+  artifacts:
+    paths:
+      - build
+      - manifest.yml
+  script:
+    - echo ${CI_COMMIT_REF_SLUG}
+    # - npm ci
+    # - npm install --registry http://pixi.intel.com
+    - npm --version
+    - npm run build
+    - cp ./src/Staticfile ./build
+
+## allow users to test this branch in a branch-specific CF instance
+deploy_review:
+  tags:
+    - linux
+    - docker
+  dependencies:
+    - build_ui
+  image: nulldriver/cf-cli-resource:latest
+  stage: review
+  script:
+    - cf login -u ${CF_USERNAME} -p ${CF_PASSWORD} -a ${CF_API_ENDPOINT} -o ${CF_ORG} -s development --skip-ssl-validation
+    - echo "app name - ${app_name}"
+    - echo "component name - ${app_component}"
+    - echo "commit - ${CI_COMMIT_REF_NAME}"
+    - sed -i "s/pbe/${CI_COMMIT_REF_NAME}/g" manifest.yml # for linux
+    # - sed -i "" "s/pbe/${CI_COMMIT_REF_NAME}/g" manifest.yml # for macOS
+    - cf push ${app_name}-${app_component}-react-${CI_COMMIT_REF_NAME}
+  environment:
+    name: review/${CI_COMMIT_REF_NAME}
+    on_stop: stop_review
+    url: https://${app_name}-${app_component}-${CI_COMMIT_REF_NAME}.apps1-fm-int.icloud.intel.com
+  only:
+    - branches
+  except:
+    - master
+
+## stop branch-specific CF instance manually via GitLab UI **or** automatically when deploy stage is executed
+stop_review:
+  tags:
+    - linux
+    - docker
+  stage: review
+  image: nulldriver/cf-cli-resource:latest
+  variables:
+    GIT_STRATEGY: none # Dont bother checking out code
+  script:
+    - cf login -u ${CF_USERNAME} -p ${CF_PASSWORD} -a ${CF_API_ENDPOINT} -o ${CF_ORG} -s development --skip-ssl-validation
+    - cf delete -f -r ${app_name}-${app_component}-react-${CI_COMMIT_REF_NAME}
+  when: manual
+  except:
+    - master
+  environment:
+    name: review/${CI_COMMIT_REF_NAME}
+    action: stop
+
+## test
+lint:
+  tags:
+    - linux
+    - docker
+  stage: review
+  script:
+    # - npm install --registry https://pixi.intel.com # only really used when cache fails
+    # - npm ci
+    # - npm install --registry http://pixi.intel.com
+    - npm run lint
+
+test:
+  tags:
+    - linux
+    - docker
+  image: alexsuch/angular-cli:6.2
+  stage: review
+  script:
+    # - npm install --registry https://pixi.intel.com # only really used when cache fails
+    # - npm ci
+    # - npm install --registry http://pixi.intel.com
+    - npm run test
+
+development:
+  tags:
+    - linux
+    - docker
+  dependencies:
+    - build_ui
+  stage: deploy
+  image: nulldriver/cf-cli-resource:latest
+  script:
+    - cf login -u ${CF_USERNAME} -p ${CF_PASSWORD} -a ${CF_API_ENDPOINT} -o ${CF_ORG} -s development --skip-ssl-validation
+    - cf push ${app_name}-${app_component}-react-dev
+  only:
+    - master
+  environment:
+    name: Development
+
+pre-production:
+  tags:
+    - linux
+    - docker
+  dependencies:
+    - build_ui
+  stage: deploy
+  image: nulldriver/cf-cli-resource:latest
+  script:
+    - cf login -u ${CF_USERNAME} -p ${CF_PASSWORD} -a ${CF_API_ENDPOINT} -o ${CF_ORG} -s test --skip-ssl-validation
+    - cf push ${app_name}-${app_component}-react-test
+  only:
+    - master
+  environment:
+    name: Pre-Production
+
+production:
+  tags:
+    - linux
+    - docker
+  dependencies:
+    - build_ui
+  stage: deploy
+  image: nulldriver/cf-cli-resource:latest
+  script:
+    - cf login -u ${CF_USERNAME} -p ${CF_PASSWORD} -a ${CF_API_ENDPOINT} -o ${CF_ORG} -s production --skip-ssl-validation
+    - cf push ${app_name}-${app_component}-react-prod
+  only:
+    - master
+  when: manual
+  environment:
+    name: Production
+
+# e2e-cypress:
+#   tags:
+#     - linux
+#   image: cypress/base:10
+#   # image: node:8
+#   stage: e2e
+#   script:
+#     # - npm ci
+#     - npm install --registry http://pixi.intel.com
+#     - npm run e2e:install
+#     # - npm install
+#     # - npm install cypress configurator
+#     - echo $e2e_localjs | base64 -d - > ./e2e/src/support/local.js
+#     - npm run cy:verify
+#     - npm run cy:run
+#   # when: manual
+#   artifacts:
+#     when: always
+#     paths:
+#       - cypress/screenshots
+#       - cypress/videos
+#   allow_failure: true
