@@ -1,0 +1,12 @@
+applications:
+- name: reckoning-ui-react
+  buildpack: staticfile_buildpack
+  disk_quota: 512M
+  instances: 1
+  memory: 256M
+  path: build/
+  env:
+    FORCE_HTTPS: true
+  routes:
+  - route: reckoning-ui-react.apps1-fm-int.icloud.intel.com
+  stack: cflinuxfs3
