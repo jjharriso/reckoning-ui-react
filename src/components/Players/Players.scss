@@ -8,7 +8,13 @@
     margin: 0;
   }
 
-  li {
-    margin-bottom: 1em;
+  ul {
+    padding-left: 0;
+    padding-top: 1em;
+    
+    li {
+      margin-bottom: 1em;
+      list-style: none;
+    }
   }
 }

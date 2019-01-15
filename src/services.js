@@ -16,7 +16,7 @@ export const connectSockets = () => {
         resolve(io);
       });
 
-      
+
 
       io.socket.on('activestory', function (msg) {
         console.log('activeStory: ', msg);
@@ -28,22 +28,56 @@ export const connectSockets = () => {
 export const getStories = async () => {
   const apiBaseUrl = configurator.config.api.reckoning;
   const request = makeRequester();
-  
-  return await request.get(`${apiBaseUrl}/v1/rallystories?flowState=${configurator.config.storyFilter.flowState}&project=${configurator.config.storyFilter.project}`);  
+
+  return await request.get(`${apiBaseUrl}/v1/rallystories?flowState=${configurator.config.storyFilter.flowState}&project=${configurator.config.storyFilter.project}`);
 };
 
 export const getRoom = async (roomId) => {
   const apiBaseUrl = configurator.config.api.reckoning;
   const request = makeRequester();
-  
+
   return await request.get(`${apiBaseUrl}/v1/rooms/${roomId}`);
 }
 
 export const getActiveStory = async (storyId) => {
   const apiBaseUrl = configurator.config.api.reckoning;
   const request = makeRequester();
-  
+
   return await request.get(`${apiBaseUrl}/v1/activestories/${storyId}`);
+}
+
+export const changeActiveStory = async (roomId, story) => {
+  const { name, description, id } = story;
+  const apiBaseUrl = configurator.config.api.reckoning;
+  const baseActiveStoriesUrl = `${apiBaseUrl}/v1/activestories`;
+  const getActiveStoryUrl = `${baseActiveStoriesUrl}?where={"room":"${roomId}","rallyStory":"${id}"}`;
+  const request = makeRequester();
+  
+  let data = await request.get(getActiveStoryUrl);
+  if (data.length < 1) {
+    const newStory = {
+      name,
+      description,
+      rallyStory: id,
+      room: roomId,
+    };
+    data = await request.post(baseActiveStoriesUrl, newStory);
+  }
+
+  await request.put(`/v1/rooms/${roomId}`, { activeStory: data[0].id });
+  return data[0] || data;
+}
+
+export const addVote = async (value, activeStory) => {
+  const { id } = activeStory;
+  const apiBaseUrl = configurator.config.api.reckoning;
+  const request = makeRequester();
+  const vote = {
+    value,
+    activeStory: id,
+  };
+  return await request.post(`${apiBaseUrl}/v1/votes`, vote);
+
 }
 
 const makeRequester = () => {

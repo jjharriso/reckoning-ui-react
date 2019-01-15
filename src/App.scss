@@ -1,7 +1,7 @@
 .App {
 
   header {
-    background-color: #0071c5;
+    background-color: #282c34;
     display: flex;
     color: white;
     
@@ -10,6 +10,10 @@
       margin: 1em;
     }
 
+    nav {
+      padding-top: 1.5em;
+    }
+    
     a {
       color: #FFFFFF;
       margin: 1em;

@@ -3,17 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
     "axios": "^0.18.0",
     "configurator": "^1.3.2",
+    "it-mlaf-sass-bs4": "^6.0.0",
+    "moment": "^2.23.0",
     "react": "^16.7.0",
+    "react-contenteditable": "^3.2.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3",
     "sails.io.js": "^1.2.1",
+    "sanitize-html": "1.18.4",
     "socket.io-client": "^2.2.0"
   },
   "devDependencies": {
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.11.0",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-render": "^1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
