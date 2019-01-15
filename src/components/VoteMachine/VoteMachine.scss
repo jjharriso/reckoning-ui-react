@@ -1,0 +1,45 @@
+.vote-machine {
+  grid-area: vote-machine;
+
+  .countdown {
+    padding:  10px 15px;
+    border: 1px solid #b1babf;
+  
+    &.stop {
+      background-color: lightblue; 
+    }
+    &.start {
+      background-color: lightgreen;
+    }
+    &.halfway {
+      background-color: orange;
+    }
+    &.warn {
+      background-color: red;
+    }
+  }
+  
+  .voting {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      width: 3em;
+    }
+  }
+
+  .story-description {
+    height: 76.5%;
+    padding: 10px 15px;
+    border: 1px solid #b1babf;
+  }
+
+  & div:not(:first-child) {
+    margin-top: 1em;
+  }
+
+  & div:not(:last-child) {
+    margin-bottom: 1em;
+  }
+
+}

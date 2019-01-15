@@ -1,0 +1,63 @@
+// Intel branding specific
+$intel-blue:    #0071c5;
+$dark-blue:     #003C71;
+$light-blue:    #00AEEF;
+$medium-blue:    #1891ee;
+$light-gray:    #b1babf;
+$gray:          #939598;
+$dark-gray:     #53565a;
+$white:         #ffffff;
+$black:         #000000;
+// Additional grays not part of Intel Branding
+$lighter-gray1:		#f7f8f9;
+$lighter-gray2:		#edeff0;
+$lighter-gray3:		#e1e5e7;
+$lighter-gray4:     #737373;
+$lighter-gray: 		$lighter-gray2;
+
+// Bootstrap 4 color variables
+$blue:    $intel-blue;
+$red:     #ed1c24;
+$orange:  #FFA300;
+$yellow:  #F3D54E;
+$green:   #C4D600;
+$cyan:    $light-blue;
+
+$border-radius:          .15rem !default;
+$border-radius-lg:       .65rem !default;
+$border-radius-med:       .45rem !default;
+$border-radius-sm:       .25rem !default;
+
+$font-family-sans-serif: "Intel Clear", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace:  "Intel Clear", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-icons: 'intelicon';
+
+$h1-font-size: 3rem;
+$h2-font-size: 1.5rem;
+$h3-font-size: 1.5rem;
+$h4-font-size: 1.25rem;
+$h5-font-size: 1.25rem;
+$h6-font-size: 1rem;
+
+$h1-font-weight: 100;
+$h2-font-weight: 700;
+$h3-font-weight: 100;
+$h4-font-weight: 700;
+$h5-font-weight: 500;
+$h6-font-weight: 700;
+
+$h1-margin-top: 0;
+$h2-margin-top: 2.5rem;
+$h3-margin-top: 1.5rem;
+$h4-margin-top: 1rem;
+$h5-margin-top: 0;
+$h6-margin-top: 0;
+
+$font-size-small: 75%;
+
+$lead-font-size:         1.5rem;
+
+$margin-medium: 2em;
+$margin-small: 1em;
+
+$padding-medium: 1em;

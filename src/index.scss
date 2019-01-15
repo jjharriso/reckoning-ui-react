@@ -13,10 +13,9 @@ code {
     monospace;
 }
 
-ul {
-  padding-left: 0;
-}
+$intel-font-path: "assets/fonts/" !default;
+$icon-font-path: "assets/fonts/" !default;
 
-li {
-  list-style: none;
-}
+@import "node_modules/it-mlaf-sass-bs4/it-mlaf";
+@import "./scss/fonts";
+@import "./scss/variables";

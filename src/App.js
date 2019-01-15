@@ -17,19 +17,21 @@ class App extends Component {
     };
   }
   title = configurator.config.title;
-  
+
   render() {
     return (
       <Router>
         <div className="App">
           <header className="App-header">
             <img src={logo} alt="logo" />
-            <Link to="/">{this.title}</Link>
-            <Link to="/room/orange">Room</Link>
+            <nav>
+              <Link to="/">{this.title}</Link>
+              <Link to="/room/orange">Room</Link>
+            </nav>
           </header>
           <section className="container">
-            <Route exact path="/" component={Home}/>
-            <Route path="/room/:roomId" render={props => (<Room io={this.state.io} {...props}/>)}/>
+            <Route exact path="/" component={Home} />
+            <Route path="/room/:roomId" render={props => (<Room io={this.state.io} {...props} />)} />
           </section>
         </div>
       </Router>
