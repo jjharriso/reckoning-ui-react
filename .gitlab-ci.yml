@@ -113,28 +113,28 @@ stop_review:
     action: stop
 
 ## test
-lint:
-  tags:
-    - linux
-    - docker
-  stage: review
-  script:
+#lint:
+  #tags:
+    #- linux
+    #- docker
+  #stage: review
+  #script:
     # - npm install --registry https://pixi.intel.com # only really used when cache fails
     # - npm ci
     # - npm install --registry http://pixi.intel.com
-    - npm run lint
+    # - npm run lint
 
-test:
-  tags:
-    - linux
-    - docker
-  image: alexsuch/angular-cli:6.2
-  stage: review
-  script:
+#test:
+  #tags:
+    #- linux
+    #- docker
+  #image: alexsuch/angular-cli:6.2
+  #stage: review
+  #script:
     # - npm install --registry https://pixi.intel.com # only really used when cache fails
     # - npm ci
     # - npm install --registry http://pixi.intel.com
-    - npm run test
+    # - npm run test
 
 development:
   tags:
