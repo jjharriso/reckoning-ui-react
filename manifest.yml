@@ -7,6 +7,4 @@ applications:
   path: build/
   env:
     FORCE_HTTPS: true
-  routes:
-  - route: reckoning-ui-react.apps1-fm-int.icloud.intel.com
   stack: cflinuxfs3
