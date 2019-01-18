@@ -1,20 +1,28 @@
 .stats {
   grid-area: stats;
-  border: 1px solid #b1babf;
+  background-color: #f7f8f9;
   padding: 10px 15px;
-  border: 1px solid #b1babf;
+  border: 2px solid #737373;
+  border-radius: 0.2rem;
 
   h2 {
     margin: 0;
+    color: #737373;
   }
 
-  ul {
+  dl {
     padding-left: 0;
     padding-top: 1em;
   
-    li {
+    dt {
       list-style: none;
       margin-bottom: 1em;
+      margin-right: .5em;
+      display: inline-block;
+    }
+
+    dd {
+      display: inline-block;
     }
   }
 }

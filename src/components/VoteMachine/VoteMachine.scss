@@ -1,23 +1,5 @@
 .vote-machine {
   grid-area: vote-machine;
-
-  .countdown {
-    padding:  10px 15px;
-    border: 1px solid #b1babf;
-  
-    &.stop {
-      background-color: lightblue; 
-    }
-    &.start {
-      background-color: lightgreen;
-    }
-    &.halfway {
-      background-color: orange;
-    }
-    &.warn {
-      background-color: red;
-    }
-  }
   
   .voting {
     display: flex;
@@ -25,13 +7,38 @@
 
     button {
       width: 3em;
+      border: 2px solid #737373;
+
+      &[disabled] {
+        cursor: not-allowed;
+      }
+
+      &:hover, &:focus {
+        background-color: hsl(196, 100%, 75%);
+      }
     }
   }
 
+  label {
+    margin-bottom: 0.1rem;
+  }
+
+  .story-name {
+    display: inline-block;
+    width: 75%;
+    margin-right: 5%;
+  }
+
+  .story-estimate {
+    display: inline-block;
+    width: 20%;
+  }
+
   .story-description {
-    height: 76.5%;
+    height: 69.5%;
     padding: 10px 15px;
-    border: 1px solid #b1babf;
+    border: 2px solid #737373;
+    border-radius: 0.2rem;
   }
 
   & div:not(:first-child) {
@@ -40,6 +47,11 @@
 
   & div:not(:last-child) {
     margin-bottom: 1em;
+  }
+
+  .form-control {
+    border: 2px solid #737373;
+    border-radius: 0.2rem;
   }
 
 }

@@ -17,5 +17,5 @@ $intel-font-path: "assets/fonts/" !default;
 $icon-font-path: "assets/fonts/" !default;
 
 @import "node_modules/it-mlaf-sass-bs4/it-mlaf";
-@import "./scss/fonts";
-@import "./scss/variables";
+@import "./scss/_fonts";
+@import "./scss/_variables";

@@ -10,10 +10,11 @@ import Room from './views/Room.js';
 
 class App extends Component {
   constructor(props) {
-    const { io } = props;
     super(props);
+    const { io, user } = props;
     this.state = {
       io,
+      user,
     };
   }
   title = configurator.config.title;
@@ -26,12 +27,12 @@ class App extends Component {
             <img src={logo} alt="logo" />
             <nav>
               <Link to="/">{this.title}</Link>
-              <Link to="/room/orange">Room</Link>
+              <Link to="/room/300">Room 300</Link>
             </nav>
           </header>
           <section className="container">
             <Route exact path="/" component={Home} />
-            <Route path="/room/:roomId" render={props => (<Room io={this.state.io} {...props} />)} />
+            <Route path="/room/:roomId" render={props => (<Room io={this.state.io} user={this.state.user} {...props} />)} />
           </section>
         </div>
       </Router>

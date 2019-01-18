@@ -32,7 +32,7 @@ configurator.register({
 
 // test values
 configurator.register({
-  HOST: ['reckoning-ui-test.app.intel.com', 'reckoning-ui-test.apps1-fm-int.icloud.intel.com'],
+  HOST: ['reckoning-ui-react-test.app.intel.com', 'reckoning-ui-react-test.apps1-fm-int.icloud.intel.com'],
   production: true,
   title: 'Reckoning {React} (Test)',
   api: {
@@ -42,7 +42,7 @@ configurator.register({
 
 // production values
 configurator.register({
-  HOST: ['reckoning.app.intel.com', 'reckoning-ui-prod.apps1-fm-int.icloud.intel.com'],
+  HOST: ['reckoning-react.app.intel.com', 'reckoning-ui-react-prod.apps1-fm-int.icloud.intel.com'],
   production: true,
   title: 'Reckoning {React}',
   api: {
@@ -51,8 +51,8 @@ configurator.register({
   googleAnalyticsId: ''
 });
 
-connectSockets().then((sockets) => {
-  ReactDOM.render(<App io={sockets}/>, document.getElementById('root'));
+connectSockets().then(({user, io }) => {
+  ReactDOM.render(<App io={io} user={user}/>, document.getElementById('root'));
 });
 
 // If you want your app to work offline and load faster, you can change

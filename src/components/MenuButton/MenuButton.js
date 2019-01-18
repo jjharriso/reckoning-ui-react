@@ -4,7 +4,7 @@ import './MenuButton.scss';
 class MenuButton extends Component {
 
   constructor(props) {
-    const { cmd, arg, iconClass, label } = props;
+    const { cmd, arg, iconClass, label, } = props;
     super(props);
     this.state = {
       cmd,
@@ -24,6 +24,7 @@ class MenuButton extends Component {
   render() {
     return (
       <button
+        disabled={this.props.disabled}
         className={`menu-button btn btn-sm ${this.state.active ? 'active' : ''}`}
         key={this.state.cmd}
         onClick={evt => {
