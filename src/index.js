@@ -42,7 +42,7 @@ configurator.register({
 
 // production values
 configurator.register({
-  HOST: ['reckoning-react.app.intel.com', 'reckoning-ui-react-prod.apps1-fm-int.icloud.intel.com'],
+  HOST: ['reckoning-ui-react.app.intel.com', 'reckoning-ui-react.apps1-fm-int.icloud.intel.com'],
   production: true,
   title: 'Reckoning {React}',
   api: {
