@@ -36,6 +36,9 @@ class Room extends Component {
         name: null,
         description: null,
         votes: [],
+        rallyStory: {
+          id: null,
+        },
       },
       user,
     };
