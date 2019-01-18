@@ -8,18 +8,18 @@ let io;
 export const connectSockets = () => {
   const apiBaseUrl = configurator.config.api.reckoning;
   return new Promise((resolve) => {
-    axios.get(`${apiBaseUrl}/v1/issouser`, { withCredentials: true }).then(user => {
+    axios.get(`${apiBaseUrl}/v1/issouser`, { withCredentials: true }).then(response => {
+      const user = response.data;
       io = sailsIO(socketIO);
       io.sails.url = apiBaseUrl;
 
       io.socket.on('connect', (msg) => {
-        resolve(io);
+        resolve({user, io});
       });
 
 
 
       io.socket.on('activestory', function (msg) {
-        console.log('activeStory: ', msg);
       });
     });
   });
@@ -67,6 +67,16 @@ export const changeActiveStory = async (roomId, story) => {
   await request.put(`/v1/rooms/${roomId}`, { activeStory: data[0].id });
   return data[0] || data;
 }
+
+export const updateParticipant = async (roomId, participant) => {
+  const { id } = participant;
+  const apiBaseUrl = configurator.config.api.reckoning;
+  const baseParticipationsUrl = `${apiBaseUrl}/v1/participations`;
+  const request = makeRequester();
+
+  await request.put(`${baseParticipationsUrl}/${id}`, participant);
+  return await request.get(`${apiBaseUrl}/v1/rooms/${roomId}`);
+};
 
 export const addVote = async (value, activeStory) => {
   const { id } = activeStory;

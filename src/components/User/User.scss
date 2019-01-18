@@ -1,0 +1,14 @@
+.user {
+  display: grid;
+  grid-template-columns: auto 30%;
+  text-align: right;
+  padding: .75em 0;
+
+  .rsbc-switch-button.rsbc-switch-button-flat-square input[type=checkbox]+label,
+  .rsbc-switch-button.rsbc-switch-button-flat-square input[type=checkbox]:checked+label {
+      background-color: #737373;
+    &:after {
+      background-color: hsl(196, 100%, 75%);
+    }
+  }
+}

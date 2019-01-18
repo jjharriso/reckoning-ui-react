@@ -13,12 +13,17 @@
   .poker-bits {
     display: grid;
     grid-template-columns: 25% auto 15%;
-    grid-template-rows: 150px auto;
+    grid-template-rows: 150px auto auto;
     grid-template-areas: 
       'story-list vote-machine stats'
-      'story-list vote-machine players';
+      'story-list vote-machine players'
+      'story-list vote-machine watchers';
     grid-row-gap: 2em;
     grid-column-gap: 1em;
   }
 
+  .header {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
 }

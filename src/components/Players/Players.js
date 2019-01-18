@@ -1,12 +1,14 @@
 import React from 'react';
 import './Players.scss';
  
-const Players = ({ players }) => {
+const Players = ({ participants, type }) => {
+  const title = type.replace(/^\w/, c => c.toUpperCase());
+
   return (
-    <div className="players">
-      <h2>Players</h2>
+    <div className={type}>
+      <h2>{title}</h2>
       <ul>
-        {players.map((player, i) => <li key={i}>{player.name}</li>)}
+        {participants.map((participant, i) => <li key={i}>{participant.name} {participant.watcher}</li>)}
       </ul>
     </div>
   )

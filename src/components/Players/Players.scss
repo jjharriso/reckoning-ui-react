@@ -1,11 +1,20 @@
-.players {
+.participants {
   grid-area: players;
-  border: 1px solid #b1babf;
+}
+
+.watchers {
+  grid-area: watchers;
+}
+
+.participants, .watchers {
+  background-color: #f7f8f9;
+  border: 2px solid #737373;
   padding: 10px 15px;
-  border: 1px solid #b1babf;
+  border-radius: 0.2rem;
 
   h2 {
     margin: 0;
+    color: #737373;
   }
 
   ul {
