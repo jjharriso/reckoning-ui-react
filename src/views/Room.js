@@ -5,7 +5,7 @@ import {
   getActiveStory,
   changeActiveStory,
   updateParticipant,
-  addVote,
+  // addVote,
 } from '../services';
 import * as configurator from 'configurator/configurator';
 
