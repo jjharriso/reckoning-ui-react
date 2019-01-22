@@ -1,10 +1,38 @@
-applications:
-- name: reckoning-ui-react
-  buildpack: staticfile_buildpack
-  disk_quota: 512M
+defaults: &defaults
+  buildpacks:
+  - staticfile_buildpack
+  memory: 64M
+  disk_quota: 1024M
   instances: 1
-  memory: 256M
   path: build/
   env:
     FORCE_HTTPS: true
-  stack: cflinuxfs3
+applications:
+  - name: reckoning-ui-react-pbe
+    <<: *defaults
+    routes:
+      - route: reckoning-ui-react-pbe.apps1-fm-int.icloud.intel.com
+      - route: reckoning-pbe.app.intel.com
+    env:
+      NODE_ENV: development
+  - name: reckoning-ui-react-dev
+    <<: *defaults
+    routes:
+      - route: reckoning-ui-react-dev.apps1-fm-int.icloud.intel.com
+      - route: reckoning-dev.app.intel.com
+    env:
+      NODE_ENV: development
+  - name: reckoning-ui-react-test
+    <<: *defaults
+    routes:
+      - route: reckoning-ui-react-test.apps1-fm-int.icloud.intel.com
+      - route: reckoning-test.app.intel.com
+    env:
+      NODE_ENV: test
+  - name: reckoning-ui-react-prod
+    <<: *defaults
+    routes:
+      - route: reckoning-ui-react-prod.apps1-fm-int.icloud.intel.com
+      - route: reckoning.app.intel.com
+    env:
+      NODE_ENV: production
