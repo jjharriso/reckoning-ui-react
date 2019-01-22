@@ -13,7 +13,7 @@
         cursor: not-allowed;
       }
 
-      &:hover, &:focus {
+      &:hover, &:focus, &.active {
         background-color: hsl(196, 100%, 75%);
       }
     }

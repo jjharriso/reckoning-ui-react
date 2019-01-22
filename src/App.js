@@ -30,10 +30,10 @@ class App extends Component {
               <Link to="/room/300">Room 300</Link>
             </nav>
           </header>
-          <section className="container">
+          <main className="container">
             <Route exact path="/" component={Home} />
             <Route path="/room/:roomId" render={props => (<Room io={this.state.io} user={this.state.user} {...props} />)} />
-          </section>
+          </main>
         </div>
       </Router>
     );

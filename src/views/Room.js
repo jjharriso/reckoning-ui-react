@@ -5,7 +5,7 @@ import {
   getActiveStory,
   changeActiveStory,
   updateParticipant,
-  // addVote,
+  addVote,
 } from '../services';
 import * as configurator from 'configurator/configurator';
 
@@ -63,7 +63,6 @@ class Room extends Component {
     });
 
     io.socket.on('vote', async (msg) => {
-      console.log(msg);
       if (msg.verb === 'created') {
         const activeStory = Object.assign(this.state.activeStory, {});
         activeStory.votes.push(msg.data.value);
@@ -97,11 +96,11 @@ class Room extends Component {
   }
 
   async handleVote(vote) {
-    // await addVote(vote, this.state.activeStory)
-    // const activeStory = await getActiveStory(this.state.activeStory.id);
-    // this.setState({
-    //   activeStory,
-    // });
+    await addVote(vote, this.state.activeStory)
+    const activeStory = await getActiveStory(this.state.activeStory.id);
+    this.setState({
+      activeStory,
+    });
   }
 
   async handleUserToggle() {
@@ -127,6 +126,11 @@ class Room extends Component {
       }
     }
     return userRole;
+  }
+
+  getUserParticipation(user) {
+    const participation = this.state.room.participations.find(participation => participation.idsid === user.idsid);
+    return participation;
   }
 
   render() {
@@ -157,10 +161,14 @@ class Room extends Component {
           <VoteMachine activeStory={activeStory}
             handleVote={this.handleVote}
             role={this.getUserRole(user)}
+            participation={this.getUserParticipation(user)}
           />
           <Stats activeStory={activeStory} />
-          <Players participants={room.participations.filter(participant => !participant.watcher)} type="participants" />
-          <Players participants={room.participations.filter(participant => participant.watcher)} type="watchers" />
+          <Players participants={room.participations.filter(participant => !participant.watcher)}
+            type="participants" 
+            votes={activeStory.votes} />
+          <Players participants={room.participations.filter(participant => participant.watcher)}
+            type="watchers" />
         </div>
       </div>
     );

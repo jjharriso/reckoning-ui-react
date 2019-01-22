@@ -5,15 +5,24 @@ import MenuButton from '../MenuButton/MenuButton';
 import './VoteMachine.scss';
 
 const VoteMachine = (props) => {
-  const { activeStory, handleVote, updateStory, role } = props;
+  const { activeStory, handleVote, updateStory, role, participation } = props;
   const disabled = role === 'watcher' ? true : false;
 
   const voteOptions = ['1', '2', '3', '5', '8', '13', '?'];
+  
+  const userVote = (voteOption) => {
+    if (!disabled) {
+      const foundVote = activeStory.votes.find(vote => vote.participation === participation.id);
+      const userVoted = foundVote && (foundVote.value === voteOption);
+      return userVoted ? 'active' : '';
+    }
+  };
+
 
   return (
     <div className="vote-machine">
       <div className="voting">
-        {voteOptions.map((option, i) => <button className="btn btn-lg" disabled={disabled || !activeStory.id} onClick={() => handleVote(option)} key={i}>{option}</button>)}
+        {voteOptions.map((voteOption, i) => <button className={`btn btn-lg ${userVote(voteOption)}`} disabled={disabled || !activeStory.id} onClick={() => handleVote(voteOption)} key={i}>{voteOption}</button>)}
       </div>
 
       <div className="form-group">

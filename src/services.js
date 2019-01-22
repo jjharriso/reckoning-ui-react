@@ -16,11 +16,6 @@ export const connectSockets = () => {
       io.socket.on('connect', (msg) => {
         resolve({user, io});
       });
-
-
-
-      io.socket.on('activestory', function (msg) {
-      });
     });
   });
 };

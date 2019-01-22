@@ -36,7 +36,7 @@ configurator.register({
   production: true,
   title: 'Reckoning {React} (Test)',
   api: {
-    reckoning: 'https://reckoning-api-test.app.intel.com',
+    reckoning: 'https://reckoning-api.app.intel.com',
   }
 });
 
