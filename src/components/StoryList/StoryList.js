@@ -12,7 +12,11 @@ const StoryList = ({ stories, changeActiveStory, activeStory }) => {
         <h2>Select a Story</h2>
       </div>
       <div className="stories">
-        <FilteredList stories={stories} changeActiveStory={changeActiveStory} activeStory={activeStory}/>
+        { stories.length > 0 ?
+          <FilteredList stories={stories} changeActiveStory={changeActiveStory} activeStory={activeStory}/>
+          :
+          <span>Loading...</span>
+        }
       </div>
     </div>
   )
