@@ -12,27 +12,27 @@ applications:
     <<: *defaults
     routes:
       - route: reckoning-ui-react-pbe.apps1-fm-int.icloud.intel.com
-      - route: reckoning-pbe.app.intel.com
+      - route: reckoning-react-pbe.app.intel.com
     env:
       NODE_ENV: development
   - name: reckoning-ui-react-dev
     <<: *defaults
     routes:
       - route: reckoning-ui-react-dev.apps1-fm-int.icloud.intel.com
-      - route: reckoning-dev.app.intel.com
+      - route: reckoning-react-dev.app.intel.com
     env:
       NODE_ENV: development
   - name: reckoning-ui-react-test
     <<: *defaults
     routes:
       - route: reckoning-ui-react-test.apps1-fm-int.icloud.intel.com
-      - route: reckoning-test.app.intel.com
+      - route: reckoning-react-test.app.intel.com
     env:
       NODE_ENV: test
   - name: reckoning-ui-react-prod
     <<: *defaults
     routes:
       - route: reckoning-ui-react-prod.apps1-fm-int.icloud.intel.com
-      - route: reckoning.app.intel.com
+      - route: reckoning-react.app.intel.com
     env:
       NODE_ENV: production
