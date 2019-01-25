@@ -1,10 +1,10 @@
 import React from 'react';
 import ContentEditable from 'react-contenteditable';
-import MenuButton from '../MenuButton/MenuButton';
+import MenuButton from '../MenuButton/MenuButton.tsx';
 
 import './VoteMachine.scss';
 
-const VoteMachine = (props) => {
+export default (props) => {
   const { activeStory, handleVote, updateStory, role, participation } = props;
   const disabled = role === 'watcher' ? true : false;
 
@@ -49,6 +49,3 @@ const VoteMachine = (props) => {
   )
 };
 
-
-
-export default VoteMachine;

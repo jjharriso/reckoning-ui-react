@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import './MenuButton.scss';
 
-class MenuButton extends Component {
+type Props = {
+  disabled: boolean
+  cmd: string
+  arg: string
+  iconClass: string
+  label: string
+  active: boolean
+}
+type State = Readonly<Props>
 
-  constructor(props) {
-    const { cmd, arg, iconClass, label, } = props;
-    super(props);
-    this.state = {
-      cmd,
-      arg,
-      iconClass,
-      label,
-      active: false,
-    };
-  }
+export default class MenuButton extends Component<Props, State> {
+  readonly state: State = { ...this.props }
 
   toggleActive() {
     this.setState((prevState) => ({
@@ -39,5 +38,3 @@ class MenuButton extends Component {
     );
   }
 }
-
-export default MenuButton;

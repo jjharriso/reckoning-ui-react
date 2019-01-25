@@ -1,11 +1,18 @@
 import React from 'react';
+import Player from './Player.model';
+import Vote from './Vote.model';
+type Props = {
+  participants: Player[]
+  type: string
+  votes: Vote[]
+}
 import './Players.scss';
- 
-const Players = ({ participants, type, votes }) => {
-  const title = type.replace(/^\w/, c => c.toUpperCase());
-  console.log(votes);
 
-  const getVote = (participant) => {
+ 
+export default ({ participants, type, votes }: Props) => {
+  const title = type.replace(/^\w/, c => c.toUpperCase());
+
+  const getVote = (participant: Player) => {
     const foundVote = votes.find(vote => vote.participation === participant.id);
     return (foundVote && ` (${foundVote.value})`) || '';
   };
@@ -25,5 +32,3 @@ const Players = ({ participants, type, votes }) => {
     </div>
   )
 };
-
-export default Players;

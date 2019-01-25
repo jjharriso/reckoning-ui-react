@@ -8,7 +8,7 @@ import './App.scss';
 import Home from './views/Home.js';
 import Room from './views/Room.js';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     const { io, user } = props;
@@ -40,4 +40,3 @@ class App extends Component {
   }
 }
 
-export default App;

@@ -5,7 +5,7 @@ import 'react-toggle-component/styles.css';
 
 import './User.scss';
 
-const User = (props) => {
+export default (props) => {
   const checked = props.role === 'watcher' ? false : true;
 
   return (
@@ -18,4 +18,3 @@ const User = (props) => {
   )
 };
 
-export default User;

@@ -1,10 +1,15 @@
-import React from 'react';
-
+import React, { SFC } from 'react';
+import Story from './Story.model';
+type Props = {
+  stories: Story[]
+  changeActiveStory(story: Story): void
+  activeStory: Story
+}
 import './StoryList.scss';
 
 import FilteredList from '../FilteredList/FilteredList';
 
-const StoryList = ({ stories, changeActiveStory, activeStory }) => {
+const StoryList: SFC<Props> = ({ stories, changeActiveStory, activeStory }) => {
   
   return (
     <div className="story-list">

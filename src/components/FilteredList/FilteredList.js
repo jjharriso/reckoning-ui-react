@@ -3,7 +3,7 @@ import sanitizeHtml from 'sanitize-html';
 
 import './FilteredList.scss';
 
-class FilteredList extends Component {
+export default class FilteredList extends Component {
   constructor(props) {
     super(props);
     const { stories, activeStory } = this.props;
@@ -75,5 +75,3 @@ class FilteredList extends Component {
     )
   }
 }
-
-export default FilteredList;

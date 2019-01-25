@@ -1,9 +1,9 @@
 import React from 'react';
 import './Stats.scss';
 
-import Timer from '../Timer/Timer';
+import Timer from '../Timer/Timer.tsx';
  
-const Stats = ({ activeStory }) => {
+export default ({ activeStory }) => {
   const { votes, id } = activeStory;
   let average = 0;
   
@@ -27,5 +27,3 @@ const Stats = ({ activeStory }) => {
     </div>
   )
 };
-
-export default Stats;

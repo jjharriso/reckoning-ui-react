@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
-class Timer extends Component {
-  interval;
+type Props = {
+  activeStoryId: string
+  label: string
+  currentTime: any
+}
+type State = Readonly<Props>
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentTime: moment(0),
-    };
+export default class Timer extends Component<Props, State> {
+  interval: any = null;
+  readonly state: State = { 
+    ...this.props,
+    currentTime: moment(0),    
   }
 
   startTimer() {
     this.interval = setInterval(() => {
-      this.setState((prevState) => ({
+      this.setState((prevState: State) => ({
         currentTime: prevState.currentTime.add(1, 'second'),
       }));
     }, 1000);
@@ -24,7 +28,7 @@ class Timer extends Component {
     this.interval = null;
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.activeStoryId && (prevProps.activeStoryId !== this.props.activeStoryId)) {
       this.stopTimer();
       this.setState({
@@ -46,5 +50,3 @@ class Timer extends Component {
     )
   }
 }
-
-export default Timer;

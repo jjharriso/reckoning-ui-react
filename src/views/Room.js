@@ -12,13 +12,13 @@ import * as configurator from 'configurator/configurator';
 import './Room.scss';
 
 import User from '../components/User/User';
-import StoryList from '../components/StoryList/StoryList';
+import StoryList from '../components/StoryList/StoryList.tsx';
 import VoteMachine from '../components/VoteMachine/VoteMachine';
 import Stats from '../components/Stats/Stats';
-import Players from '../components/Players/Players';
+import Players from '../components/Players/Players.tsx';
 
 
-class Room extends Component {
+export default class Room extends Component {
   config = configurator.config;
 
   constructor(props) {
@@ -71,7 +71,7 @@ class Room extends Component {
     });
   }
 
-  async componentWillMount() {
+  async componentDidMount() {
     const haveRoom = getRoom(this.state.match.params.roomId);
     const haveStories = getStories();
 
@@ -175,4 +175,3 @@ class Room extends Component {
   }
 }
 
-export default Room;

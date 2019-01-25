@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.scss';
 
-const Home = () => {
+export default () => {
   return (
     <div className="home">
       <h1>Planning Poker</h1>
@@ -10,4 +10,3 @@ const Home = () => {
   );
 }
 
-export default Home;
