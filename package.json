@@ -7,8 +7,6 @@
     "@types/react": "^16.7.20",
     "@types/react-dom": "^16.0.11",
     "axios": "^0.18.0",
-    "configurator": "^1.3.2",
-    "it-mlaf-sass-bs4": "^6.0.0",
     "moment": "^2.23.0",
     "react": "^16.7.0",
     "react-contenteditable": "^3.2.0",

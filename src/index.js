@@ -10,14 +10,6 @@ import { connectSockets } from './services';
 configurator.register({
   production: false,
   title: 'Reckoning {React} (Dev)',
-  api: {
-    reckoning: 'https://reckoning-api.app.intel.com',
-  },
-  googleAnalyticsId: '',
-  storyFilter: {
-    project: '182579615780', // TNT Team Rally ID
-    flowState: '193398767036'
-  },
 });
 
 // local values
@@ -25,9 +17,6 @@ configurator.register({
   HOST: [/localhost/],
   production: true,
   title: 'Reckoning {React} (Local)',
-  api: {
-    reckoning: 'https://reckoning-api.app.intel.com',
-  }
 });
 
 // test values
@@ -35,9 +24,6 @@ configurator.register({
   HOST: ['reckoning-ui-react-test.app.intel.com', 'reckoning-ui-react-test.apps1-fm-int.icloud.intel.com'],
   production: true,
   title: 'Reckoning {React} (Test)',
-  api: {
-    reckoning: 'https://reckoning-api.app.intel.com',
-  }
 });
 
 // production values
@@ -45,10 +31,6 @@ configurator.register({
   HOST: ['reckoning-ui-react.app.intel.com', 'reckoning-ui-react.apps1-fm-int.icloud.intel.com'],
   production: true,
   title: 'Reckoning {React}',
-  api: {
-    reckoning: 'https://reckoning-api.app.intel.com',
-  },
-  googleAnalyticsId: ''
 });
 
 connectSockets().then(({user, io }) => {
