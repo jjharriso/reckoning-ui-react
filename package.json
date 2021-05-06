@@ -16,7 +16,7 @@
     "react-test-render": "^1.1.2",
     "react-toggle-component": "^1.0.5",
     "sails.io.js": "^1.2.1",
-    "sanitize-html": "1.18.4",
+    "sanitize-html": "2.3.2",
     "socket.io-client": "^2.3.0",
     "ts-loader": "^5.4.5",
     "typescript": "^3.6.4"
